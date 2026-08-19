@@ -1,1 +1,9 @@
-
+raw.githubusercontent.com
+github.com
+api.github.com
+cloudflare.com
+google.com
+gstatic.com
+apple.com
+microsoft.com
+windowsupdate.com

@@ -1,1 +1,8 @@
+(^|\.)adservice\.google\.com$
+(^|\.)doubleclick\.net$
+(^|\.)tracking\.*
+(^|\.)analytics\.*
+(^|\.)telemetry\.*
+(^|\.)clicks\.*
+(^|\.)promo\.*
 

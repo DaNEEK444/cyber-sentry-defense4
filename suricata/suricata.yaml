@@ -1,0 +1,57 @@
+%YAML 1.1
+---
+
+# Cyber Sentry Defense Suricata Configuration
+# Lightweight config optimized for Raspberry Pi 4 IDS mode
+
+af-packet:
+  - interface: eth1
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    ring-size: 2048
+    block-size: 32768
+    buffer-size: 32768
+
+vars:
+  address-groups:
+    HOME_NET: "[192.168.0.0/16]"
+    EXTERNAL_NET: "!$HOME_NET"
+
+logging:
+  default-log-level: info
+  outputs:
+    - fast:
+        enabled: yes
+        filename: fast.log
+    - eve-log:
+        enabled: yes
+        filetype: regular
+        filename: eve.json
+        types:
+          - alert
+          - dns
+          - tls
+          - http
+          - ssh
+          - stats
+
+detect:
+  profile: medium
+  sgh-mpm-context: auto
+  inspection-recursion-limit: 3000
+
+engine-analysis:
+  rules-fast-pattern: yes
+
+threading:
+  set-cpu-affinity: yes
+  cpu-affinity:
+    - management:
+        cpu: [0]
+    - receive-pkt:
+        cpu: [1]
+    - detect:
+        cpu: [2,3]
+
